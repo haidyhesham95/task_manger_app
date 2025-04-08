@@ -23,7 +23,7 @@ class TaskCubit extends Cubit<TaskState> {
     this._deleteTaskUseCase,
   ) : super(TaskInitial());
 
-  doAction(TaskAction action) {
+ void doAction(TaskAction action) {
     switch (action) {
       case GetTask():
         _getTasks();

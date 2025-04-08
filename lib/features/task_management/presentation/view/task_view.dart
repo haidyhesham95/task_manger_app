@@ -6,6 +6,7 @@ import 'package:xyris_task/core/styles/fonts/my_fonts.dart';
 import 'package:xyris_task/core/utils/widgets/custom_app_bar.dart';
 import 'package:xyris_task/features/task_management/presentation/view_model/task_cubit.dart';
 
+import '../../../../core/utils/widgets/custom_toast.dart';
 import '../../domain/entity/task_entity.dart';
 import '../view_model/task_action.dart';
 import '../view_model/task_state.dart';
@@ -46,6 +47,7 @@ class TaskView extends StatelessWidget {
           context
               .read<TaskCubit>()
               .doAction(DeleteTask(taskId: tasks[index].id));
+          CustomToast.showSuccessToast(message: 'Task deleted successfully');
         },
       ),
       separatorBuilder: (context, index) => SizedBox(height: 15.h),

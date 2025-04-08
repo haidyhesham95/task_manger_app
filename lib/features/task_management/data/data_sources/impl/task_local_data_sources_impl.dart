@@ -4,9 +4,9 @@ import 'package:xyris_task/features/task_management/domain/entity/task_entity.da
 
 import '../../mapper/mapper.dart';
 import '../../model/task_model.dart';
-import '../contract/task_local_data_sources.dart';
+import '../contract/task_data_sources.dart';
 
-class TaskLocalDataSourceImpl implements TaskLocalDataSource {
+class TaskLocalDataSourceImpl implements TaskDataSource {
   final Box<TaskModel> _taskBox;
 
   TaskLocalDataSourceImpl() : _taskBox = GetIt.instance<Box<TaskModel>>();

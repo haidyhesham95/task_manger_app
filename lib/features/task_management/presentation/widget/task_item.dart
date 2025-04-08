@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:xyris_task/core/styles/colors/app_color.dart';
-import 'package:xyris_task/features/task_management/presentation/widget/slidable_action_widget.dart';
+import 'package:xyris_task/features/task_management/presentation/widget/custom_slidable_action.dart';
 import '../../../../core/routes/app_routes.dart';
 import '../../../../core/styles/fonts/my_fonts.dart';
 import '../../domain/entity/task_entity.dart';
@@ -24,7 +24,7 @@ class TaskItem extends StatelessWidget {
       endActionPane: ActionPane(
         motion: const ScrollMotion(),
         children: [
-          slidableActionWidget(
+          customSlidableAction(
             onPressed: () {
               Navigator.pushNamed(
                 context,
@@ -35,7 +35,7 @@ class TaskItem extends StatelessWidget {
             backgroundColor: AppColor.blue,
             icon: Icons.edit,
           ),
-          slidableActionWidget(
+          customSlidableAction(
             onPressed: () {
               onDelete();
             },

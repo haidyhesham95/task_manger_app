@@ -4,7 +4,7 @@ import 'package:xyris_task/features/task_management/domain/use_case/add_task_use
 import 'package:xyris_task/features/task_management/domain/use_case/delete_task_use_case.dart';
 import 'package:xyris_task/features/task_management/domain/use_case/edit_task_use_case.dart';
 import 'package:xyris_task/features/task_management/domain/use_case/get_all_tasks_use_case.dart';
-import '../../features/task_management/data/data_sources/contract/task_local_data_sources.dart';
+import '../../features/task_management/data/data_sources/contract/task_data_sources.dart';
 import '../../features/task_management/data/data_sources/impl/task_local_data_sources_impl.dart';
 import '../../features/task_management/data/model/task_model.dart';
 import '../../features/task_management/data/repositories/task_repositories_impl.dart';
@@ -18,8 +18,8 @@ Future<void> init() async {
   final taskBox = await Hive.openBox<TaskModel>('tasksBox');
   sl.registerLazySingleton<Box<TaskModel>>(() => taskBox);
   // Data Source
-  sl.registerLazySingleton<TaskLocalDataSource>(
-      () => TaskLocalDataSourceImpl());
+  sl.registerLazySingleton<TaskDataSource>(
+          () => TaskLocalDataSourceImpl());
 
   // Repository
   sl.registerLazySingleton<TaskRepository>(() => TaskRepositoryImpl());

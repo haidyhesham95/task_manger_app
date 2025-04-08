@@ -44,42 +44,44 @@ class _EditTaskViewState extends State<EditTaskView> {
       extendBodyBehindAppBar: false,
       backgroundColor: AppColor.background,
       appBar: customAppBar(context),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
-          child: Column(
-            spacing: 20.h,
-            children: [
-              SizedBox(height: 20.h),
-              CustomTextFormField(
-                hintTxt: 'Edit task title',
-                controller: titleController,
-              ),
-              CustomTextFormField(
-                hintTxt: 'Edit task description',
-                controller: descriptionController,
-                maxLines: 5,
-              ),
-              SizedBox(height: 60.h),
-              CustomButton(
-                txt: 'Edit Task',
-                onPressed: () {
-                  if (titleController.text.isEmpty) {
-                    CustomToast.showErrorToast(message: 'Title is required');
-                  } else {
-                    final updatedTask = TaskEntity(
-                      id: widget.task.id,
-                      title: titleController.text,
-                      description: descriptionController.text,
-                    );
+      body: Padding(
+        padding: const EdgeInsets.only(left: 16,top: 30, right: 16, bottom: 60),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Column(
+              spacing: 20.h,
+              children: [
+                CustomTextFormField(
+                  hintTxt: 'Edit task title',
+                  controller: titleController,
+                ),
+                CustomTextFormField(
+                  hintTxt: 'Edit task description',
+                  controller: descriptionController,
+                  maxLines: 5,
+                ),
+              ],
+            ),
+            CustomButton(
+              txt: 'Edit Task',
+              onPressed: () {
+                if (titleController.text.isEmpty) {
+                  CustomToast.showErrorToast(message: 'Title is required');
+                } else {
+                  final updatedTask = TaskEntity(
+                    id: widget.task.id,
+                    title: titleController.text,
+                    description: descriptionController.text,
+                  );
 
-                    cubit.doAction(EditTask(task: updatedTask));
-                    Navigator.pop(context);
-                  }
-                },
-              ),
-            ],
-          ),
+                  cubit.doAction(EditTask(task: updatedTask));
+                  CustomToast.showSuccessToast(message: 'Task updated successfully');
+                  Navigator.pop(context);
+                }
+              },
+            ),
+          ],
         ),
       ),
     );

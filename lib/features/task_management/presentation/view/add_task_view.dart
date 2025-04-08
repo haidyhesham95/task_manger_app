@@ -28,31 +28,39 @@ class AddTaskView extends StatelessWidget {
       appBar: customAppBar(context),
       body: BlocConsumer<TaskCubit, TaskState>(
         listener: (context, state) {
-          if (state is TaskError) {
-            CustomToast.showErrorToast(message: state.message);
-          } else if (state is TaskLoaded) {
-            CustomToast.showSuccessToast(message: 'Task added successfully');
-            Navigator.pop(context);
-          }
+          return switch (state) {
+            TaskLoaded() => {
+                CustomToast.showSuccessToast(
+                    message: 'Task added successfully'),
+                Navigator.pop(context),
+              },
+            TaskError() => CustomToast.showErrorToast(message: state.message),
+            _ => const SizedBox.shrink(),
+          };
         },
         builder: (context, state) {
           final cubit = context.read<TaskCubit>();
           return Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding:
+                const EdgeInsets.only(left: 16, top: 30, right: 16, bottom: 60),
             child: Column(
-              spacing: 20.h,
               crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                CustomTextFormField(
-                  hintTxt: 'Enter task title',
-                  controller: titleController,
+                Column(
+                  spacing: 20.h,
+                  children: [
+                    CustomTextFormField(
+                      hintTxt: 'Enter task title',
+                      controller: titleController,
+                    ),
+                    CustomTextFormField(
+                      hintTxt: 'Enter task description',
+                      controller: descriptionController,
+                      maxLines: 5,
+                    ),
+                  ],
                 ),
-                CustomTextFormField(
-                  hintTxt: 'Enter task description',
-                  controller: descriptionController,
-                  maxLines: 5,
-                ),
-                SizedBox(height: 60.h),
                 CustomButton(
                   onPressed: () {
                     final title = titleController.text.trim();
@@ -64,14 +72,15 @@ class AddTaskView extends StatelessWidget {
                     }
 
                     final task = TaskEntity(
-                      id: uuid.toString(),
+                      id: uuid.v4(),
                       title: title,
                       description: description,
                     );
-
+                    titleController.clear();
+                    descriptionController.clear();
                     cubit.doAction(AddTask(task: task));
                   },
-                  txt: 'Add Task',
+                  txt: 'Done',
                 ),
               ],
             ),

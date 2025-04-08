@@ -27,18 +27,18 @@ class CustomButton extends StatelessWidget {
       style: ButtonStyle(
         elevation: WidgetStatePropertyAll<double>(0),
           backgroundColor:
-              WidgetStatePropertyAll<Color>(color ?? AppColor.darkGray),
+              WidgetStatePropertyAll<Color>(color ?? AppColor.yellow),
           padding: WidgetStatePropertyAll<EdgeInsetsGeometry>(
               EdgeInsets.symmetric(horizontal: width ?? 0, vertical: 12.h)),
           shape: WidgetStatePropertyAll<OutlinedBorder>(RoundedRectangleBorder(
 
               borderRadius: BorderRadius.circular(10),
-              side: BorderSide(color:color ?? AppColor.darkGray))
+              side: BorderSide(color:color ?? AppColor.yellow))
           )),
       child: Center(
         child: Text(
           txt,
-          style: AppFonts.styleMedium_20
+          style: AppFonts.styleMedium_18
         ),
       ),
     );

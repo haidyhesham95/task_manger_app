@@ -39,6 +39,7 @@ mixin AppFonts {
     fontSize: 24,
     color: AppColor.white,
   );
+
   static TextStyle styleSemiBold_20 = const TextStyle(
     fontWeight: FontWeight.w600,
     fontSize: 20,
@@ -61,6 +62,8 @@ mixin AppFonts {
   static TextStyle styleMedium_18 = const TextStyle(
     fontWeight: FontWeight.w500,
     fontSize: 18,
+    color: AppColor.white,
+
   );
 
   static TextStyle styleMedium_12 = const TextStyle(

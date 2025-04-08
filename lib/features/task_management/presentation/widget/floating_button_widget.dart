@@ -7,7 +7,7 @@ import '../../../../core/styles/colors/app_color.dart';
 FloatingActionButton floatingButtonWidget(BuildContext context) {
   return FloatingActionButton(
     onPressed: () => Navigator.pushNamed(context, AppRoutes.addTaskView),
-    backgroundColor: AppColor.darkGray,
+    backgroundColor: AppColor.yellow,
     child: Icon(Icons.add, size: 30.sp, color: AppColor.white),
   );
 }

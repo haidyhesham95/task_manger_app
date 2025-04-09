@@ -6,6 +6,10 @@ class DeleteTaskUseCase {
   DeleteTaskUseCase(this._repository);
 
   Future<void> call(String id) async {
-    return await _repository.deleteTask(id);
+    try {
+      await _repository.deleteTask(id);
+    } catch (e) {
+      throw Exception("Failed to delete task: $e");
+    }
   }
 }

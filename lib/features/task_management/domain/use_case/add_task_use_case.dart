@@ -7,6 +7,10 @@ class AddTaskUseCase {
   AddTaskUseCase(this._repository);
 
   Future<void> call(TaskEntity task) async {
-    return await _repository.addTask(task);
+    try {
+      return await _repository.addTask(task);
+    } catch (e) {
+      throw Exception("Failed to add task: $e");
+    }
   }
 }

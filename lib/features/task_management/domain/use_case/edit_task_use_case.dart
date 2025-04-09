@@ -5,8 +5,12 @@ class EditTaskUseCase {
 
   EditTaskUseCase(this._repository);
 
-  Future<void> call(TaskEntity task)  async {
-    return await _repository.editTask(task);
+  Future<void> call( TaskEntity task) async {
+    try {
+      await _repository.editTask(task);
+    } catch (e) {
+      throw Exception("Failed to edit task: $e");
+    }
   }
 
 }

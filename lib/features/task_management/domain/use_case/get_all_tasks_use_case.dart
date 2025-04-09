@@ -6,6 +6,11 @@ class GetAllTasksUseCase {
   GetAllTasksUseCase(this._repository);
 
   Future<List<TaskEntity>> call()  async {
-    return await _repository.getTasks();
+    try{
+      return await _repository.getTasks();
+    } catch (e) {
+      throw Exception("Failed to get tasks: $e");
+    }
   }
+
 }

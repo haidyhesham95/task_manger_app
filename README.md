@@ -6,10 +6,10 @@ A clean and maintainable **Task Manager** application built with **Flutter**, fo
 
 ## 📱 Features
 
-- Add new tasks with title and description
+- Add new tasks with title and description(optional) 
 - View a list of tasks
-- Edit existing tasks
-- Delete tasks
+- Edit existing tasks by swipe
+- Delete tasks by swipe
 - Local storage using **Hive**
 
 ---
